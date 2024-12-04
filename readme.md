@@ -2,6 +2,7 @@
 
 This is the repository for OOP Final Project
 
+comment on your code so anyone can understand its purpose, pick up and help
 Todo:
 1. Finalize usecase diagram
 2. create sequence diagrams
@@ -25,6 +26,7 @@ Todo:
         * view portfolio
         * buy stock
         * sell stock
+    * register, login, and main GUIs
 6. additional functionality
     * change login info
     * search for stocks
