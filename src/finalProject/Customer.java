@@ -8,6 +8,7 @@ public class Customer extends User{
 
 	// extra data fields
 	float balance = 0;
+	Portfolio port;
 	
 	// extra methods
 	public void deposit_money(float amount) {
