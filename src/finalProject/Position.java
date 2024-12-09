@@ -1,14 +1,26 @@
 package finalProject;
 
+
 public class Position {
+	
+	// data fields
 	Stock stock;
 	float purchase_price;
 	float num_shares;
-	float current_value;
 	
+	// extra
 	float total_cost = purchase_price * num_shares;
 	float total_value = stock.getPrice() * num_shares;
 	float profit_loss = total_value - total_cost;
+	
+	// constructors
+	public Position(Stock stock, float purchase_price, float num_shares) {
+		this.stock = stock;
+		this.purchase_price = purchase_price;
+		this.num_shares = num_shares;
+	}
+	
+	// getters and setters
 	public Stock getStock() {
 		return stock;
 	}
@@ -26,12 +38,6 @@ public class Position {
 	}
 	public void setNum_shares(float num_shares) {
 		this.num_shares = num_shares;
-	}
-	public float getCurrent_value() {
-		return current_value;
-	}
-	public void setCurrent_value(float current_value) {
-		this.current_value = current_value;
 	}
 	public float getTotal_cost() {
 		return total_cost;
