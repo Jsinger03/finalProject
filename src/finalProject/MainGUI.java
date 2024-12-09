@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 public class MainGUI extends JFrame {
 
+	// is this where we make the global static arraylists of users and admins??
+
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 
