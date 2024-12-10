@@ -1,61 +1,67 @@
 package finalProject;
 
-
 public class Position {
-	
-	// data fields
-	Stock stock;
-	float purchase_price;
-	float num_shares;
-	
-	// extra
-	float total_cost = purchase_price * num_shares;
-	float total_value = stock.getPrice() * num_shares;
-	float profit_loss = total_value - total_cost;
-	
-	// constructors
-	public Position(Stock stock, float purchase_price, float num_shares) {
-		this.stock = stock;
-		this.purchase_price = purchase_price;
-		this.num_shares = num_shares;
-	}
-	
-	// getters and setters
-	public Stock getStock() {
-		return stock;
-	}
-	public void setStock(Stock stock) {
-		this.stock = stock;
-	}
-	public float getPurchase_price() {
-		return purchase_price;
-	}
-	public void setPurchase_price(float purchase_price) {
-		this.purchase_price = purchase_price;
-	}
-	public float getNum_shares() {
-		return num_shares;
-	}
-	public void setNum_shares(float num_shares) {
-		this.num_shares = num_shares;
-	}
-	public float getTotal_cost() {
-		return total_cost;
-	}
-	public void setTotal_cost(float total_cost) {
-		this.total_cost = total_cost;
-	}
-	public float getTotal_value() {
-		return total_value;
-	}
-	public void setTotal_value(float total_value) {
-		this.total_value = total_value;
-	}
-	public float getProfit_loss() {
-		return profit_loss;
-	}
-	public void setProfit_loss(float profit_loss) {
-		this.profit_loss = profit_loss;
-	}
-	
+    private int positionId;
+    private int portfolioId;
+    private int stockId;
+    private int quantity;
+    private double averageCost;
+
+    public Position() {}
+
+    public Position(int positionId, int portfolioId, int stockId, int quantity, double averageCost) {
+        this.positionId = positionId;
+        this.portfolioId = portfolioId;
+        this.stockId = stockId;
+        this.quantity = quantity;
+        this.averageCost = averageCost;
+    }
+
+    public int getPositionId() {
+        return positionId;
+    }
+
+    public void setPositionId(int positionId) {
+        this.positionId = positionId;
+    }
+
+    public int getPortfolioId() {
+        return portfolioId;
+    }
+
+    public void setPortfolioId(int portfolioId) {
+        this.portfolioId = portfolioId;
+    }
+
+    public int getStockId() {
+        return stockId;
+    }
+
+    public void setStockId(int stockId) {
+        this.stockId = stockId;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public double getAverageCost() {
+        return averageCost;
+    }
+
+    public void setAverageCost(double averageCost) {
+        this.averageCost = averageCost;
+    }
+
+    public double getMarketValue(double currentPrice) {
+        return currentPrice * quantity;
+    }
+
+    public double getUnrealizedProfitLoss(double currentPrice) {
+        return (currentPrice - averageCost) * quantity;
+    }
 }
