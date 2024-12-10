@@ -5,27 +5,19 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class RegisterGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtUsername;
+	private JTextField txtPassword;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegisterGUI frame = new RegisterGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -37,6 +29,35 @@ public class RegisterGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JLabel lblUsername = new JLabel("Username");
+		lblUsername.setBounds(87, 53, 84, 16);
+		contentPane.add(lblUsername);
+		
+		txtUsername = new JTextField();
+		txtUsername.setBounds(206, 48, 130, 26);
+		contentPane.add(txtUsername);
+		txtUsername.setColumns(10);
+		
+		txtPassword = new JTextField();
+		txtPassword.setBounds(206, 106, 130, 26);
+		contentPane.add(txtPassword);
+		txtPassword.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("New label");
+		lblPassword.setBounds(87, 111, 61, 16);
+		contentPane.add(lblPassword);
+		
+		JButton btnRegister = new JButton("Register");
+		btnRegister.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//actions to register an account
+				//check if username exists, if so then reject
+				//if username does not exist, add username password pair to the users db
+			}
+		});
+		btnRegister.setBounds(160, 168, 117, 29);
+		contentPane.add(btnRegister);
 	}
-
 }
