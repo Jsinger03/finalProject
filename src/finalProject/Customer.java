@@ -6,10 +6,11 @@ public class Customer extends User {
     public Customer() {
         super();
         this.balance = 5000.0;
+		this.setUserType("Customer");
     }
 
     public Customer(int userId, String username, String password, double balance, int portfolioId) {
-        super(userId, username, password);
+        super(userId, username, password, "Customer");
         this.balance = balance;
         this.portfolioId = portfolioId;
     }

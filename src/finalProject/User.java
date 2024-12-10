@@ -4,13 +4,15 @@ public class User {
     private int userId;
     private String username;
     private String password;
+	private String userType;//Customer or Admin
 
     public User() {}
 
-    public User(int userId, String username, String password) {
+    public User(int userId, String username, String password, String userType) {
         this.userId = userId;
         this.username = username;
         this.password = password;
+		this.userType = userType;
     }
 
     public int getUserId() {
@@ -35,6 +37,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+	public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 
     public void updateProfile(String username, String newPassword) {

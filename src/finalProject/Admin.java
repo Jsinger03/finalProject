@@ -1,14 +1,18 @@
 package finalProject;
 import java.util.*;
 
-public class Admin extends User{
-	
-	Scanner sc = new Scanner(System.in);
 
-	// super constructor
-	public Admin(String usern, String pwd) {
-		super(usern, pwd);
-	}
+public class Admin extends User {
+    public Admin() {
+        super();
+		this.setUserType("Admin");
+    }
+    public Admin(int userId, String username, String password, String userType) {
+        super(userId, username, password, "Admin");
+    }
+
+	private Scanner sc = new Scanner(System.in);
+
 	
 	// global universe of stocks
 	public static ArrayList<Stock> stocks;
