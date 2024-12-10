@@ -49,6 +49,12 @@ public class LoginGUI extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//steps to login
+				//check users db for username
+				//	if found
+						//check if pwd matches username pwd
+				//		else say no match
+				//	else
+				//		check admins db
 			}
 		});
 		btnLogin.setBounds(160, 158, 117, 29);

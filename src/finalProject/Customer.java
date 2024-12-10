@@ -1,40 +1,18 @@
 package finalProject;
 public class Customer extends User {
     private double balance;
-    private int portfolioId;
+    private Portfolio portfolio;
+    private Watchlist watchlist;
 
-    public Customer() {
-        super();
-        this.balance = 5000.0;
-		this.setUserType("Customer");
-    }
-
-    public Customer(int userId, String username, String password, double balance, int portfolioId) {
-        super(userId, username, password, "Customer");
+    public Customer(String id, String username, String password, String name, double balance) {
+        super(id, username, password, name);
         this.balance = balance;
-        this.portfolioId = portfolioId;
+        this.portfolio = new Portfolio();
+        this.watchlist = new Watchlist();
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-
-    public int getPortfolioId() {
-        return portfolioId;
-    }
-
-    public void setPortfolioId(int portfolioId) {
-        this.portfolioId = portfolioId;
-    }
-
-    public void deposit(double amount) {
-        this.balance += amount;
-    }
-	public void withdraw(double amount) {
-		this.balance -= amount;
-	}
+    public double getBalance() { return balance; }
+    public void setBalance(double balance) { this.balance = balance; }
+    public Portfolio getPortfolio() { return portfolio; }
+    public Watchlist getWatchlist() { return watchlist; }
 }
