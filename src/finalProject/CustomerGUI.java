@@ -9,11 +9,15 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class CustomerGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField txtDepositAmount;
+	private JTextField txtWithdrawAmount;
 
 
 	/**
@@ -29,31 +33,71 @@ public class CustomerGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnDeposit = new JButton("Deposit");
-		btnDeposit.setBounds(39, 203, 117, 29);
+		btnDeposit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take the quantity in txtDepositAmount and add it to Customer's balance
+			}
+		});
+		btnDeposit.setBounds(281, 178, 117, 29);
 		contentPane.add(btnDeposit);
 		
 		JButton btnWithdraw = new JButton("Withdraw");
-		btnWithdraw.setBounds(271, 203, 117, 29);
+		btnWithdraw.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take quantity in txtWithdrawAmount and remove it from Customer's balance
+			}
+		});
+		btnWithdraw.setBounds(281, 219, 117, 29);
 		contentPane.add(btnWithdraw);
 		
 		JButton btnViewPortfolio = new JButton("View Portfolio");
 		btnViewPortfolio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//render PortfolioGUI
 			}
 		});
-		btnViewPortfolio.setBounds(39, 129, 117, 29);
+		btnViewPortfolio.setBounds(34, 70, 117, 29);
 		contentPane.add(btnViewPortfolio);
 		
 		JButton btnViewTransactions = new JButton("View Transactions");
-		btnViewTransactions.setBounds(39, 67, 178, 29);
+		btnViewTransactions.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//render TransactionsGUI
+			}
+		});
+		btnViewTransactions.setBounds(24, 29, 178, 29);
 		contentPane.add(btnViewTransactions);
 		
 		JButton btnUpdateProfile = new JButton("Update Profile");
-		btnUpdateProfile.setBounds(271, 67, 117, 29);
+		btnUpdateProfile.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//render UpdateProfileGUI
+			}
+		});
+		btnUpdateProfile.setBounds(300, 29, 117, 29);
 		contentPane.add(btnUpdateProfile);
 		
 		JButton btnViewStocks = new JButton("View Stocks");
-		btnViewStocks.setBounds(250, 129, 117, 29);
+		btnViewStocks.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//render ViewStocksGUI
+			}
+		});
+		btnViewStocks.setBounds(281, 70, 117, 29);
 		contentPane.add(btnViewStocks);
+		
+		txtDepositAmount = new JTextField();
+		txtDepositAmount.setBounds(125, 178, 130, 26);
+		contentPane.add(txtDepositAmount);
+		txtDepositAmount.setColumns(10);
+		
+		txtWithdrawAmount = new JTextField();
+		txtWithdrawAmount.setBounds(125, 219, 130, 26);
+		contentPane.add(txtWithdrawAmount);
+		txtWithdrawAmount.setColumns(10);
+		
+		JLabel lblAmount = new JLabel("Amount");
+		lblAmount.setBounds(156, 154, 61, 16);
+		contentPane.add(lblAmount);
 	}
 }

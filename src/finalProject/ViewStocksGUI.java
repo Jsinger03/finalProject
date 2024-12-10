@@ -69,20 +69,35 @@ public class ViewStocksGUI extends JFrame {
 		JButton btnSearch = new JButton("Search");
 		btnSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Search stocks db and see if a stock matches the name or symbol given in those fields
+				//if so, load that data into the JList
+				//if not, do not modify the list
 			}
 		});
 		btnSearch.setBounds(293, 14, 117, 29);
 		contentPane.add(btnSearch);
 		
 		JButton btnBuyStock = new JButton("Buy Stock");
+		btnBuyStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take selected stock from list, and quantity from text field
+				//have customer buy the stock, using its own function to check if it has enough balance
+				//return to the CustomerGUI
+			}
+		});
 		btnBuyStock.setBounds(308, 225, 117, 29);
 		contentPane.add(btnBuyStock);
 		
-		JList list = new JList();
-		list.setBounds(26, 75, 399, 137);
-		contentPane.add(list);
+		JList listStocks = new JList();
+		listStocks.setBounds(26, 75, 399, 137);
+		contentPane.add(listStocks);
 		
 		JButton btnAddToWatchlist = new JButton("Add to Watchlist");
+		btnAddToWatchlist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take the stock selected from the list and add it to the customer's watchlist attribute
+			}
+		});
 		btnAddToWatchlist.setBounds(271, 42, 173, 29);
 		contentPane.add(btnAddToWatchlist);
 		

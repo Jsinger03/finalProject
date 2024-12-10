@@ -32,6 +32,8 @@ public class UpdateProfileGUI extends JFrame {
 		JButton btnChangeUsername = new JButton("Change Username");
 		btnChangeUsername.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//set Customer's db to newUsername.txt
+				//update Customer's username in users.txt
 			}
 		});
 		btnChangeUsername.setBounds(71, 163, 149, 29);
@@ -40,6 +42,7 @@ public class UpdateProfileGUI extends JFrame {
 		JButton btnChangePwd = new JButton("Change Password");
 		btnChangePwd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//update customer's password in users.txt
 			}
 		});
 		btnChangePwd.setBounds(272, 163, 149, 29);

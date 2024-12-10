@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JButton;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PortfolioGUI extends JFrame {
 
@@ -16,21 +18,7 @@ public class PortfolioGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtQuantity;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PortfolioGUI frame = new PortfolioGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the frame.
@@ -55,8 +43,16 @@ public class PortfolioGUI extends JFrame {
 		JList listPortfolio = new JList();
 		listPortfolio.setBounds(103, 36, 241, 126);
 		contentPane.add(listPortfolio);
+		//need to pull the Portfolio from Customer, and for each stock in it search the database for that stock and get its current price
+		//if stock is not present, remove it from portfolio
 		
 		JButton btnSellStock = new JButton("Sell Stock");
+		btnSellStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take the selected stock, and have the Customer call the method it has for selling stocks
+				//call updateList
+			}
+		});
 		btnSellStock.setBounds(307, 225, 117, 29);
 		contentPane.add(btnSellStock);
 		
