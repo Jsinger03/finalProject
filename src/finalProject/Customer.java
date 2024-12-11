@@ -1,6 +1,8 @@
 package finalProject;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -18,7 +20,6 @@ public class Customer extends User {
 
 	public Customer(String id, String username, String password) {
 		super(id, username, password);
-		// TODO Auto-generated constructor stub
 		this.type=0;
         this.setup();
 	}
@@ -91,6 +92,23 @@ public class Customer extends User {
         return this.balance;
     }
     public Portfolio getPortfolio() {
+        Portfolio updatedPortfolio = new Portfolio();
+        StocksManager stocksManager = new StocksManager();
+        for (Map.Entry<Stock, Integer> entry : this.portfolio.getHoldings().entrySet()) {
+            Stock stock = entry.getKey();
+            int quantity = entry.getValue();
+    
+            // Find the current stock from the StocksManager
+            Stock currentStock = stocksManager.getStock(stock.getSymbol());
+    
+            if (currentStock != null) {
+                // Create a new Stock object with the updated price
+                Stock updatedStock = new Stock(stock.getSymbol(), stock.getName(), currentStock.getPrice());
+                // Add the stock to the updated portfolio
+                updatedPortfolio.addStock(updatedStock, quantity);
+            }
+        }
+        this.portfolio = updatedPortfolio; // Update the customer's portfolio
         return this.portfolio;
     }
     public void buyStock(Stock stock, int quantity) {
@@ -137,6 +155,15 @@ public class Customer extends User {
     public void addToWatchlist(String stock) {
         this.watchlist += stock + ";";
         save();
+    }
+    public double getPL() {
+        double val = balance;
+        for (Map.Entry<Stock, Integer> entry : this.portfolio.getHoldings().entrySet()) {
+            Stock stock = entry.getKey();
+            int quantity = entry.getValue();
+            val += stock.getPrice() * quantity;
+        }
+        return val - 5000; 
     }
 
 }

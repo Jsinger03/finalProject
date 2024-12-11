@@ -31,14 +31,6 @@ public class PortfolioGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBalance = new JLabel(String.format("Balance: %.2f", customer.getBalance()));
-		lblBalance.setBounds(46, 144, 130, 16);
-		contentPane.add(lblBalance);
-		
-		JLabel lblPL = new JLabel("Profit/Loss");
-		lblPL.setBounds(46, 172, 81, 16);
-		contentPane.add(lblPL);
-		
 		String[] portfolio = customer.getPortfolio().toString().split(";");
 		JList listPortfolio = new JList(portfolio);
 		listPortfolio.setBounds(36, 6, 371, 126);
@@ -46,7 +38,13 @@ public class PortfolioGUI extends JFrame {
 		//need to pull the Portfolio from Customer, and for each stock in it search the database for that stock and get its current price
 		//if stock is not present, remove it from portfolio
 		
-		
+		JLabel lblBalance = new JLabel(String.format("Balance: %.2f", customer.getBalance()));
+    	lblBalance.setBounds(46, 144, 295, 16);
+    	contentPane.add(lblBalance);
+    
+    	JLabel lblPL = new JLabel(String.format("Profit/Loss: %.2f", customer.getPL()));
+		lblPL.setBounds(46, 172, 295, 16);
+		contentPane.add(lblPL);
 		
 		txtQuantity = new JTextField();
 		txtQuantity.setBounds(148, 225, 130, 26);
