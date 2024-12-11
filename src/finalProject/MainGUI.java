@@ -30,6 +30,7 @@ public class MainGUI extends JFrame {
 				//render LoginGUI
 				LoginGUI loginGUI = new LoginGUI();
 				loginGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnLogin.setBounds(68, 117, 117, 29);

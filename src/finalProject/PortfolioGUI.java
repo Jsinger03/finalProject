@@ -1,29 +1,28 @@
 package finalProject;
 
-import java.awt.EventQueue;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JList;
-import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.border.EmptyBorder;
 
 public class PortfolioGUI extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtQuantity;
-
+	private Customer customer;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public PortfolioGUI() {
+	public PortfolioGUI(Customer customer) {
+		this.customer = customer;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -32,15 +31,16 @@ public class PortfolioGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblBalance = new JLabel("Balance: ");
-		lblBalance.setBounds(103, 174, 61, 16);
+		JLabel lblBalance = new JLabel(String.format("Balance: %.2f", customer.getBalance()));
+		lblBalance.setBounds(103, 174, 130, 16);
 		contentPane.add(lblBalance);
 		
 		JLabel lblPL = new JLabel("Profit/Loss");
 		lblPL.setBounds(103, 202, 81, 16);
 		contentPane.add(lblPL);
 		
-		JList listPortfolio = new JList();
+		String[] portfolio = customer.getPortfolio().toString().split(";");
+		JList listPortfolio = new JList(portfolio);
 		listPortfolio.setBounds(103, 36, 241, 126);
 		contentPane.add(listPortfolio);
 		//need to pull the Portfolio from Customer, and for each stock in it search the database for that stock and get its current price

@@ -60,6 +60,9 @@ public class CustomerGUI extends JFrame {
 		btnViewPortfolio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//render PortfolioGUI
+				PortfolioGUI portfolioGUI = new PortfolioGUI(customer);
+				portfolioGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnViewPortfolio.setBounds(34, 70, 117, 29);
@@ -87,6 +90,7 @@ public class CustomerGUI extends JFrame {
 		btnViewStocks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//render ViewStocksGUI
+				
 			}
 		});
 		btnViewStocks.setBounds(281, 70, 117, 29);

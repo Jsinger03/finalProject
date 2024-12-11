@@ -87,5 +87,11 @@ public class Customer extends User {
 		}
         save();
 	}
+    public double getBalance() {
+        return this.balance;
+    }
+    public Portfolio getPortfolio() {
+        return this.portfolio;
+    }
 
 }
