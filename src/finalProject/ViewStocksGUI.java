@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
 
 public class ViewStocksGUI extends JFrame {
 
@@ -19,27 +20,14 @@ public class ViewStocksGUI extends JFrame {
 	private JTextField txtName;
 	private JTextField txtSymbol;
 	private JTextField txtQuantity;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ViewStocksGUI frame = new ViewStocksGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
+	private Customer customer;
+	private StocksManager stocksManager;
 	/**
 	 * Create the frame.
 	 */
-	public ViewStocksGUI() {
+	public ViewStocksGUI(Customer customer) {
+		this.customer=customer;
+		this.stocksManager = new StocksManager();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -87,8 +75,12 @@ public class ViewStocksGUI extends JFrame {
 		});
 		btnBuyStock.setBounds(308, 225, 117, 29);
 		contentPane.add(btnBuyStock);
-		
-		JList listStocks = new JList();
+		ArrayList<Stock> stocks = stocksManager.getStocks();
+		String[] displayableStocks = new String[stocks.size()];
+		for (int i = 0; i < stocks.size(); i++) {
+			displayableStocks[i] = stocks.get(i).toString();
+		}
+		JList listStocks = new JList(displayableStocks);
 		listStocks.setBounds(26, 75, 399, 137);
 		contentPane.add(listStocks);
 		

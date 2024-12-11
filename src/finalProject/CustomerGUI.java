@@ -90,7 +90,9 @@ public class CustomerGUI extends JFrame {
 		btnViewStocks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//render ViewStocksGUI
-				
+				ViewStocksGUI viewStocksGUI = new ViewStocksGUI(customer);
+				viewStocksGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnViewStocks.setBounds(281, 70, 117, 29);
