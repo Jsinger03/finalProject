@@ -1,16 +1,13 @@
 package finalProject;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTable;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class CustomerGUI extends JFrame {
 
@@ -72,6 +69,9 @@ public class CustomerGUI extends JFrame {
 		btnViewTransactions.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//render TransactionsGUI
+				TransactionsGUI transactionsGUI = new TransactionsGUI(customer);
+				transactionsGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnViewTransactions.setBounds(24, 29, 178, 29);
@@ -81,6 +81,9 @@ public class CustomerGUI extends JFrame {
 		btnUpdateProfile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//render UpdateProfileGUI
+				UpdateProfileGUI updateProfileGUI = new UpdateProfileGUI(customer);
+				updateProfileGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnUpdateProfile.setBounds(300, 29, 117, 29);

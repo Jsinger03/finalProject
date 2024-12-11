@@ -65,7 +65,7 @@ public class ViewStocksGUI extends JFrame {
 		contentPane.add(listStocks);
 		
 		txtQuantity = new JTextField();
-		txtQuantity.setBounds(144, 225, 130, 26);
+		txtQuantity.setBounds(94, 225, 130, 26);
 		contentPane.add(txtQuantity);
 		txtQuantity.setColumns(10);
 		
@@ -102,17 +102,32 @@ public class ViewStocksGUI extends JFrame {
 				customerGUI.setVisible(true);
 			}
 		});
-		btnBuyStock.setBounds(308, 225, 117, 29);
+		btnBuyStock.setBounds(225, 225, 117, 29);
 		contentPane.add(btnBuyStock);
 
 		JButton btnAddToWatchlist = new JButton("Add to Watchlist");
 		btnAddToWatchlist.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//take the stock selected from the list and add it to the customer's watchlist attribute
+				customer.addToWatchlist(listStocks.getSelectedValue().toString());
+				dispose();
+				CustomerGUI customerGUI = new CustomerGUI(customer);
+				customerGUI.setVisible(true);
 			}
 		});
 		btnAddToWatchlist.setBounds(271, 42, 173, 29);
 		contentPane.add(btnAddToWatchlist);
+		
+		JButton btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CustomerGUI customerGUI = new CustomerGUI(customer);
+				customerGUI.setVisible(true);
+			}
+		});
+		btnClose.setBounds(333, 224, 117, 29);
+		contentPane.add(btnClose);
 	}
 
 }

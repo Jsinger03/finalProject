@@ -2,10 +2,10 @@ package finalProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.io.PrintWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.UUID;
 public class AuthManager {
     private static final String USERS_FILE = "users.txt";
@@ -22,7 +22,7 @@ public class AuthManager {
 	                if (parts[3].toString().equals("1")) {
 	                    return new Admin(parts[0], parts[1]);
 	                } else {
-	                    return new Customer(parts[0], parts[1], parts[2]);
+	                    return new Customer(parts[2], parts[0], parts[1]);
 	                }
 	            }
 	        }
@@ -67,5 +67,52 @@ public class AuthManager {
 		}
         
     }
+    public static void updateUsername(Customer customer, String newUsername) {
+        File usersFile = new File(USERS_FILE);
+        StringBuilder fileContent = new StringBuilder();
 
+        try (Scanner scanner = new Scanner(usersFile)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                if (parts[0].equals(customer.getUsername())) {
+                    line = newUsername + "," + parts[1] + "," + parts[2] + "," + parts[3];
+                }
+                fileContent.append(line).append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileWriter writer = new FileWriter(usersFile)) {
+            writer.write(fileContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void updatePassword(Customer customer, String newPassword) {
+        File usersFile = new File(USERS_FILE);
+        StringBuilder fileContent = new StringBuilder();
+
+        try (Scanner scanner = new Scanner(usersFile)) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                if (parts[0].equals(customer.getUsername())) {
+                    line = parts[0] + "," + newPassword + "," + parts[2] + "," + parts[3];
+                }
+                fileContent.append(line).append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (FileWriter writer = new FileWriter(usersFile)) {
+            writer.write(fileContent.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+

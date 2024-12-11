@@ -10,10 +10,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 public class Customer extends User {
-	Portfolio portfolio;
-	ArrayList<Transaction> transactions;
-	Watchlist watchlist;
-	double balance;
+	private Portfolio portfolio;
+	private String transactions;
+	private String watchlist;
+	private double balance;
 	
 
 	public Customer(String id, String username, String password) {
@@ -27,8 +27,8 @@ public class Customer extends User {
     }
     public void setup() {
         this.portfolio = new Portfolio();
-        this.transactions = new ArrayList<>();
-        this.watchlist = new Watchlist();
+        this.transactions = "";
+        this.watchlist = "";
         File idFile = new File(id + ".txt");
         if (idFile.exists()) {
             try (Scanner scanner = new Scanner(idFile)) {
@@ -42,10 +42,10 @@ public class Customer extends User {
                     if (!line.isEmpty()) { // Check if the line is not empty
                         if (tracker == 0) {
                             portfolio = Portfolio.fromString(line);
-                        } else if (tracker == 1 && !line.equals("[]")) { // Check for empty transactions
-                            transactions = Transaction.fromString(line);
+                        } else if (tracker == 1) { // Check for empty transactions
+                            transactions = line;
                         } else if (tracker == 2) {
-                            watchlist = Watchlist.fromString(line);
+                            watchlist = line;
                         }
                     }
                     tracker++;
@@ -59,8 +59,8 @@ public class Customer extends User {
                  PrintWriter pw = new PrintWriter(writer)) {
                 pw.println(this.balance);
                 pw.println(this.portfolio.toString());
-                pw.println(this.transactions.toString());
-                pw.println(this.watchlist.toString());
+                pw.println(this.transactions);
+                pw.println(this.watchlist);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -71,8 +71,8 @@ public class Customer extends User {
             PrintWriter pw = new PrintWriter(writer)) {
             pw.println(this.balance);
             pw.println(this.portfolio.toString());
-            pw.println(this.transactions.toString());
-            pw.println(this.watchlist.toString());
+            pw.println(this.transactions);
+            pw.println(this.watchlist);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,7 +97,7 @@ public class Customer extends User {
         if (this.balance >= stock.getPrice() * quantity) {
             this.balance -= stock.getPrice() * quantity;
             this.portfolio.addStock(stock, quantity);
-            this.transactions.add(new Transaction(stock, quantity, LocalDateTime.now(), "buy"));
+            appendTransaction(stock, quantity, LocalDateTime.now(), "buy");
             save();
         } else {
             System.out.println("Insufficient balance to buy stock");
@@ -107,11 +107,36 @@ public class Customer extends User {
         if (held >= quantity) {
             this.balance += stock.getPrice() * quantity;
             this.portfolio.removeStock(stock, quantity);
-            this.transactions.add(new Transaction(stock, quantity, LocalDateTime.now(), "sell"));
+            appendTransaction(stock, quantity, LocalDateTime.now(), "sell");
             save();
         } else {
             System.out.println("Insufficient quantity to sell stock");
         }
+    }
+    private void appendTransaction(Stock stock, int quantity, LocalDateTime date, String type) {
+        String transaction = stock.toString() + "`" + quantity + "`" + date + "`" + type + ";";
+        this.transactions += transaction;
+    }
+    public String[][] getTransactions() {
+        String[] entries = this.transactions.split(";");
+        String[][] data = new String[entries.length][4];
+        for (int i = 0; i < entries.length; i++) {
+            if (!entries[i].trim().isEmpty()) {
+                String[] fields = entries[i].split("`");
+                data[i][0] = fields[3]; // Type (buy/sell)
+                data[i][1] = fields[0]; // Stock
+                data[i][2] = fields[1]; // Quantity
+                data[i][3] = fields[2]; // Date
+            }
+        }
+        return data;
+    }
+    public String getWatchlist() {
+        return this.watchlist;
+    }
+    public void addToWatchlist(String stock) {
+        this.watchlist += stock + ";";
+        save();
     }
 
 }

@@ -16,11 +16,13 @@ public class UpdateProfileGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtChangeTo;
+	private Customer customer;
 
 	/**
 	 * Create the frame.
 	 */
-	public UpdateProfileGUI() {
+	public UpdateProfileGUI(Customer customer) {
+		this.customer= customer;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -34,6 +36,11 @@ public class UpdateProfileGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//set Customer's db to newUsername.txt
 				//update Customer's username in users.txt
+				AuthManager.updateUsername(customer, txtChangeTo.getText());
+				customer.setUsername(txtChangeTo.getText());
+				dispose();
+				CustomerGUI customerGUI = new CustomerGUI(customer);
+				customerGUI.setVisible(true);
 			}
 		});
 		btnChangeUsername.setBounds(71, 163, 149, 29);
@@ -43,6 +50,11 @@ public class UpdateProfileGUI extends JFrame {
 		btnChangePwd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//update customer's password in users.txt
+				AuthManager.updatePassword(customer, txtChangeTo.getText());
+				customer.setPassword(txtChangeTo.getText());
+				dispose();
+				CustomerGUI customerGUI = new CustomerGUI(customer);
+				customerGUI.setVisible(true);
 			}
 		});
 		btnChangePwd.setBounds(272, 163, 149, 29);
@@ -56,6 +68,17 @@ public class UpdateProfileGUI extends JFrame {
 		JLabel lblChangeTo = new JLabel("Change to: ");
 		lblChangeTo.setBounds(72, 99, 99, 16);
 		contentPane.add(lblChangeTo);
+		
+		JButton btnClose = new JButton("Close");
+		btnClose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				CustomerGUI customerGUI = new CustomerGUI(customer);
+				customerGUI.setVisible(true);
+			}
+		});
+		btnClose.setBounds(173, 220, 117, 29);
+		contentPane.add(btnClose);
 	}
 
 }

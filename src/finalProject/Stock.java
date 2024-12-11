@@ -27,4 +27,18 @@ public class Stock {
         }
         return new Stock(parts[0], parts[1], Double.parseDouble(parts[2]));
     }
+
+    //override to allow buying and selling to find the stock in a portfolio
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Stock stock = (Stock) obj;
+        return symbol.equals(stock.symbol); // Assuming symbol uniquely identifies a stock
+    }
+
+    @Override
+    public int hashCode() {
+        return symbol.hashCode();
+    }
 }

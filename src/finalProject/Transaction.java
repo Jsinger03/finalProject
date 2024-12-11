@@ -1,8 +1,6 @@
 package finalProject;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class Transaction {
@@ -24,21 +22,18 @@ public class Transaction {
     public static ArrayList<Transaction> fromString(String str) {
         ArrayList<Transaction> transactions = new ArrayList<>();
         String[] entries = str.split(";");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
         for (String transaction : entries) {
+            if (transaction.trim().isEmpty()) continue; // Skip empty entries
             String[] parts = transaction.split(":");
             if (parts.length == 4) {
                 try {
                     Stock stock = Stock.fromString(parts[0]);
                     int quantity = Integer.parseInt(parts[1]);
-                    LocalDateTime date = LocalDateTime.parse(parts[2], formatter);
+                    LocalDateTime date = LocalDateTime.parse(parts[2]);
                     String type = parts[3];
                     transactions.add(new Transaction(stock, quantity, date, type));
-                } catch (DateTimeParseException e) {
-                    System.err.println("Invalid date format: " + parts[2]);
-                    e.printStackTrace();
                 } catch (Exception e) {
-                    System.err.println("Error parsing transaction: " + transaction);
+                    System.err.println("Invalid transaction format: " + transaction);
                     e.printStackTrace();
                 }
             } else {

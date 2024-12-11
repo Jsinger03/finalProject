@@ -1,0 +1,4 @@
+0.020000000004074536
+MSFT,Microsoft Corporation,216.54:3;GOOGL,Alphabet Inc.,2823.36:1
+GOOGL,Alphabet Inc.,2823.36`1`2024-12-11T00:42:14.907760`buy;MSFT,Microsoft Corporation,216.54`4`2024-12-11T00:42:20.231959`buy;MSFT,Microsoft Corporation,216.54`1`2024-12-11T00:42:28.789377`sell;
+MSFT,Microsoft Corporation,216.54;AMZN,Amazon.com Inc.,3350.77;
