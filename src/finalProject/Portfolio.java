@@ -3,7 +3,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Portfolio {
-    private Map<Stock, Integer> holdings = new HashMap<>();
+    private Map<Stock, Integer> holdings = new HashMap<Stock, Integer>();
+    public Portfolio() {
+        holdings = new HashMap<Stock, Integer>();
+    }
 
     public Map<Stock, Integer> getHoldings() {
         return holdings;
@@ -45,7 +48,7 @@ public class Portfolio {
         for (String entry : entries) {
             String[] parts = entry.split(":");
             if (parts.length == 2) {
-                Stock stock = Stock.fromString(parts[0]); // Assuming Stock has a fromString method
+                Stock stock = Stock.fromString(parts[0]);
                 int quantity = Integer.parseInt(parts[1]);
                 portfolio.addStock(stock, quantity);
             }

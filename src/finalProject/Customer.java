@@ -6,12 +6,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class Customer extends User {
-	HashMap<String, Stock> portfolio;
+	Portfolio portfolio;
 	ArrayList<Transaction> transactions;
-	ArrayList<Stock> watchlist;
+	Watchlist watchlist;
 	double balance;
 	
 
@@ -21,49 +22,70 @@ public class Customer extends User {
 		this.type=0;
         this.setup();
 	}
-	public void setup() {
-		//check if id.txt exists
-		//if yes, read from it and fill in the portfolio, transactions, and watchlist
-		//if no, make those objects new and create id.txt
-        this.portfolio = new HashMap<>();
+    public static Customer fromString(String id, String username, String password) {
+        return new Customer(id, username, password);
+    }
+    public void setup() {
+        this.portfolio = new Portfolio();
         this.transactions = new ArrayList<>();
-        this.watchlist = new ArrayList<>();
+        this.watchlist = new Watchlist();
         File idFile = new File(id + ".txt");
         if (idFile.exists()) {
-            Scanner scanner = new Scanner(idFile);
-            this.balance = scanner.nextDouble();
-            int tracker = 0;
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (tracker == 0) {
-                    portfolio= Portfolio.fromString(line);
-                } else if (tracker == 1) {
-                    transactions= Transaction.fromString(line);
-                } else if (tracker == 2) {
-                    watchlist= Watchlist.fromString(line);
+            try (Scanner scanner = new Scanner(idFile)) {
+                if (scanner.hasNextDouble()) {
+                    this.balance = scanner.nextDouble();
+                    scanner.nextLine(); // Move to the next line after reading balance
                 }
-                tracker++;
+                int tracker = 0;
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine().trim(); // Trim whitespace
+                    if (!line.isEmpty()) { // Check if the line is not empty
+                        if (tracker == 0) {
+                            portfolio = Portfolio.fromString(line);
+                        } else if (tracker == 1 && !line.equals("[]")) { // Check for empty transactions
+                            transactions = Transaction.fromString(line);
+                        } else if (tracker == 2) {
+                            watchlist = Watchlist.fromString(line);
+                        }
+                    }
+                    tracker++;
+                }
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
-            scanner.close();
         } else {
             this.balance = 5000;
-            FileWriter writer = new FileWriter(idFile);
-            PrintWriter pw = new PrintWriter(writer);
+            try (FileWriter writer = new FileWriter(idFile);
+                 PrintWriter pw = new PrintWriter(writer)) {
+                pw.println(this.balance);
+                pw.println(this.portfolio.toString());
+                pw.println(this.transactions.toString());
+                pw.println(this.watchlist.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void save() {
+        try (FileWriter writer = new FileWriter(id + ".txt");
+            PrintWriter pw = new PrintWriter(writer)) {
             pw.println(this.balance);
             pw.println(this.portfolio.toString());
             pw.println(this.transactions.toString());
             pw.println(this.watchlist.toString());
-            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-		
-	}
+    }
 	public void deposit(double amt) {
 		this.balance+=amt;
+        save();
 	}
 	public void withdraw(double amt) {
 		if (amt < this.balance) {
 			this.balance -= amt;
 		}
+        save();
 	}
 
 }

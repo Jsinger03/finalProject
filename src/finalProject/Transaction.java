@@ -1,6 +1,7 @@
 package finalProject;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class Transaction {
     private Stock stock;
@@ -17,10 +18,23 @@ public class Transaction {
     }
     public String toString() {
         //transaction is stored as stock,quantity,price,date,type
-        return stock.toString() + ":" + quantity + ":" + price + ":" + date.toString() + ":" + type;
+        return stock.toString() + ":" + quantity + ":" + price + ":" + date.toString() + ":" + type + ";";
     }
-    public static Transaction fromString(String str) {
-        String[] parts = str.split(":");
-        return new Transaction(Stock.fromString(parts[0]), Integer.parseInt(parts[1]), Double.parseDouble(parts[2]), LocalDateTime.parse(parts[3]), parts[4]);
+    
+    public static ArrayList<Transaction> fromString(String str) {
+        ArrayList<Transaction> transactions = new ArrayList<>();
+        String[] entries = str.split(";");
+        for (String transaction : entries) {
+            String[] parts = transaction.split(":"); // Corrected from 'str' to 'transaction'
+            Transaction t = new Transaction(
+                Stock.fromString(parts[0]), 
+                Integer.parseInt(parts[1]), 
+                Double.parseDouble(parts[2]), 
+                LocalDateTime.parse(parts[3]), 
+                parts[4]
+            );
+            transactions.add(t);
+        }
+        return transactions;
     }
 }

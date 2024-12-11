@@ -15,12 +15,16 @@ public class Stock {
     public String getName() { return name; }
     public double getPrice() { return price; }
     public void setPrice(double price) { this.price = price; }
+    @Override
     public String toString() {
         //stock is stored as symbol,name,price
         return symbol + "," + name + "," + price;
     }
     public static Stock fromString(String str) {
         String[] parts = str.split(",");
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Invalid stock string: " + str);
+        }
         return new Stock(parts[0], parts[1], Double.parseDouble(parts[2]));
     }
 }

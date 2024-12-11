@@ -18,12 +18,14 @@ public class CustomerGUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtDepositAmount;
 	private JTextField txtWithdrawAmount;
+	private Customer customer;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public CustomerGUI() {
+	public CustomerGUI(User user) {
+		customer = Customer.fromString(user.getId(), user.getUsername(), user.getPassword());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -36,6 +38,8 @@ public class CustomerGUI extends JFrame {
 		btnDeposit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//take the quantity in txtDepositAmount and add it to Customer's balance
+				double amt = Double.parseDouble(txtDepositAmount.getText());
+				customer.deposit(amt);
 			}
 		});
 		btnDeposit.setBounds(281, 178, 117, 29);
@@ -45,6 +49,8 @@ public class CustomerGUI extends JFrame {
 		btnWithdraw.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//take quantity in txtWithdrawAmount and remove it from Customer's balance
+				double amt = Double.parseDouble(txtWithdrawAmount.getText());
+				customer.withdraw(amt);
 			}
 		});
 		btnWithdraw.setBounds(281, 219, 117, 29);

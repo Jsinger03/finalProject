@@ -59,7 +59,7 @@ public class LoginGUI extends JFrame {
 						AdminGUI adminGUI = new AdminGUI();
 						adminGUI.setVisible(true);
 					} else {
-						CustomerGUI customerGUI = new CustomerGUI();
+						CustomerGUI customerGUI = new CustomerGUI(user);
 						customerGUI.setVisible(true);
 					}
 				}
