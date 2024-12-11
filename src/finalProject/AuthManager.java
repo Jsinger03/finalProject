@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.UUID;
 public class AuthManager {
     private static final String USERS_FILE = "users.txt";
@@ -47,9 +49,18 @@ public class AuthManager {
 	        }
 			scanner.close();
 	        String id = UUID.randomUUID().toString();
-	        PrintWriter writer = new PrintWriter(usersFile);
-	        writer.println(username + "," + password + "," + id + "," + type);
-	        writer.close();
+            //needs to write to end, not overwrite
+	        FileWriter writer;
+			try {
+				writer = new FileWriter(usersFile, true);
+				PrintWriter pw = new PrintWriter(writer);
+		        pw.println(username + "," + password + "," + id + "," + type);
+		        pw.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
