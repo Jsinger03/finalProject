@@ -51,19 +51,21 @@ public class RegisterGUI extends JFrame {
 		lblPassword.setBounds(87, 111, 61, 16);
 		contentPane.add(lblPassword);
 		
+		JRadioButton rdbtnIsAdmin = new JRadioButton("Admin");
+		rdbtnIsAdmin.setBounds(87, 159, 141, 23);
+		contentPane.add(rdbtnIsAdmin);
+
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//actions to register an account
 				//check if username exists, if so then reject
 				//if username does not exist, add username password pair to the users db
+				AuthManager.register(txtUsername.getText(), txtPassword.getText(), rdbtnIsAdmin.isSelected() ? 1 : 0);//1 for admin, 0 for customer
+				dispose();
 			}
 		});
 		btnRegister.setBounds(157, 212, 117, 29);
 		contentPane.add(btnRegister);
-		
-		JRadioButton rdbtnIsAdmin = new JRadioButton("Admin");
-		rdbtnIsAdmin.setBounds(87, 159, 141, 23);
-		contentPane.add(rdbtnIsAdmin);
 	}
 }

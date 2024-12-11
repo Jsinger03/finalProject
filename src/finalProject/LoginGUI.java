@@ -45,23 +45,27 @@ public class LoginGUI extends JFrame {
 		lblPassword.setBounds(128, 108, 61, 16);
 		contentPane.add(lblPassword);
 		
+		pwdFieldPWD = new JPasswordField();
+		pwdFieldPWD.setBounds(201, 103, 127, 26);
+		contentPane.add(pwdFieldPWD);
+
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//steps to login
-				//check users db for username
-				//	if found
-						//check if pwd matches username pwd
-				//		else say no match
-				//	else
-				//		check admins db
+				User user = AuthManager.login(txtUsername.getText(), pwdFieldPWD.getText());
+				if (user != null) {
+					dispose();
+					if (user.getType() == 1) {
+						AdminGUI adminGUI = new AdminGUI();
+						adminGUI.setVisible(true);
+					} else {
+						CustomerGUI customerGUI = new CustomerGUI();
+						customerGUI.setVisible(true);
+					}
+				}
 			}
 		});
 		btnLogin.setBounds(160, 158, 117, 29);
 		contentPane.add(btnLogin);
-		
-		pwdFieldPWD = new JPasswordField();
-		pwdFieldPWD.setBounds(201, 103, 127, 26);
-		contentPane.add(pwdFieldPWD);
 	}
 }
