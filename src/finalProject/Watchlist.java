@@ -10,9 +10,20 @@ public class Watchlist {
         stocks.add(stock);
     }
 
-    public void removeStock(Stock stock) {
-        stocks.remove(stock);
-    }
-
     public List<Stock> getStocks() { return stocks; }
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        for (Stock stock : stocks) {
+            out.append(stock.toString()).append(";");
+        }
+        return out.toString();
+    }
+    public static Watchlist fromString(String str) {
+        Watchlist watchlist = new Watchlist();
+        String[] entries = str.split(";");
+        for (String entry : entries) {
+            watchlist.addStock(Stock.fromString(entry));
+        }
+        return watchlist;
+    }
 }
