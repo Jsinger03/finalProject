@@ -70,6 +70,6 @@ public class StocksManager {
                 return stock;
             }
         }
-        return null; // Return null if the stock is not found
+        return null;//stock not found
     }
 }

@@ -89,13 +89,13 @@ public class ViewStocksGUI extends JFrame {
                 ArrayList<Stock> searchResults;
 
                 if (!name.isEmpty()) {
-                    // Search by name
+                    //search by name
                     searchResults = stocksManager.searchStocks(name);
                 } else if (!symbol.isEmpty()) {
-                    // Search by symbol
+                    //search by symbol
                     searchResults = stocksManager.searchStocks(symbol);
                 } else {
-                    // If both are blank, search as currently implemented
+                    //if both are blank, return the whole db of stocks
                     searchResults = stocksManager.getStocks();
                 }
 

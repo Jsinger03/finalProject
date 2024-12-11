@@ -92,8 +92,8 @@ public class EditStocksGUI extends JFrame {
 		JButton btnDeleteStock = new JButton("Delete Stock (Select)");
 		btnDeleteStock.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//remove the selected stock in the JList from the db
-				//reload the data for the JList
+				//remove the selected stock in the list from the db
+				//reload the data for the list
 				stocksmanager.deleteStock(Stock.fromString(listStocks.getSelectedValue().toString()));
 				ArrayList<Stock> stocks = stocksmanager.getStocks();
 				String[] displayableStocks = new String[stocks.size()];
@@ -109,8 +109,8 @@ public class EditStocksGUI extends JFrame {
 		JButton btnChangePrice = new JButton("Change Price (type)");
 		btnChangePrice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//take the selected stock from the JList and change the price associated with it in the db
-				//reload the JList data
+				//take the selected stock from the list and change the price associated with it in the db
+				//reload the list data
 				stocksmanager.changePrice(Stock.fromString(listStocks.getSelectedValue().toString()), Double.parseDouble(txtStockPrice.getText()));
 				ArrayList<Stock> stocks = stocksmanager.getStocks();
 				String[] displayableStocks = new String[stocks.size()];

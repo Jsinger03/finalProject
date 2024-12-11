@@ -58,9 +58,6 @@ public class RegisterGUI extends JFrame {
 		JButton btnRegister = new JButton("Register");
 		btnRegister.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//actions to register an account
-				//check if username exists, if so then reject
-				//if username does not exist, add username password pair to the users db
 				AuthManager.register(txtUsername.getText(), txtPassword.getText(), rdbtnIsAdmin.isSelected() ? 1 : 0);//1 for admin, 0 for customer
 				dispose();
 			}

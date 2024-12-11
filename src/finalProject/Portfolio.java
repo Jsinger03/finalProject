@@ -35,7 +35,7 @@ public class Portfolio {
                .append(entry.getValue())
                .append(";");
         }
-        // Remove the last semicolon
+        //remove the last semicolon
         if (out.length() > 0) {
             out.setLength(out.length() - 1);
         }

@@ -35,15 +35,15 @@ public class Customer extends User {
             try (Scanner scanner = new Scanner(idFile)) {
                 if (scanner.hasNextDouble()) {
                     this.balance = scanner.nextDouble();
-                    scanner.nextLine(); // Move to the next line after reading balance
+                    scanner.nextLine();
                 }
                 int tracker = 0;
                 while (scanner.hasNextLine()) {
-                    String line = scanner.nextLine().trim(); // Trim whitespace
-                    if (!line.isEmpty()) { // Check if the line is not empty
+                    String line = scanner.nextLine().trim();
+                    if (!line.isEmpty()) {
                         if (tracker == 0) {
                             portfolio = Portfolio.fromString(line);
-                        } else if (tracker == 1) { // Check for empty transactions
+                        } else if (tracker == 1) {
                             transactions = line;
                         } else if (tracker == 2) {
                             watchlist = line;
@@ -98,17 +98,17 @@ public class Customer extends User {
             Stock stock = entry.getKey();
             int quantity = entry.getValue();
     
-            // Find the current stock from the StocksManager
+            //find the current stock from the StocksManager
             Stock currentStock = stocksManager.getStock(stock.getSymbol());
     
             if (currentStock != null) {
-                // Create a new Stock object with the updated price
+                //create a new Stock object with the updated price
                 Stock updatedStock = new Stock(stock.getSymbol(), stock.getName(), currentStock.getPrice());
-                // Add the stock to the updated portfolio
+                //add the stock to the updated portfolio
                 updatedPortfolio.addStock(updatedStock, quantity);
             }
         }
-        this.portfolio = updatedPortfolio; // Update the customer's portfolio
+        this.portfolio = updatedPortfolio; //update the customer's portfolio
         return this.portfolio;
     }
     public void buyStock(Stock stock, int quantity) {
@@ -141,10 +141,10 @@ public class Customer extends User {
         for (int i = 0; i < entries.length; i++) {
             if (!entries[i].trim().isEmpty()) {
                 String[] fields = entries[i].split("`");
-                data[i][0] = fields[3]; // Type (buy/sell)
-                data[i][1] = fields[0]; // Stock
-                data[i][2] = fields[1]; // Quantity
-                data[i][3] = fields[2]; // Date
+                data[i][0] = fields[3]; //Type (buy/sell)
+                data[i][1] = fields[0]; //Stock
+                data[i][2] = fields[1]; //Quantity
+                data[i][3] = fields[2]; //Date
             }
         }
         return data;

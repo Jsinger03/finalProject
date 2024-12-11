@@ -67,10 +67,10 @@ public class AdminViewTransactionsGUI extends JFrame {
         if (!entries[i].trim().isEmpty()) {
             String[] fields = entries[i].split("`");
             if (fields.length >= 4) {
-                data[i][0] = fields[3]; // Type (buy/sell)
-                data[i][1] = fields[0]; // Stock
-                data[i][2] = fields[1]; // Quantity
-                data[i][3] = fields[2]; // Date
+                data[i][0] = fields[3]; //Type (buy/sell)
+                data[i][1] = fields[0]; //Stock
+                data[i][2] = fields[1]; //Quantity
+                data[i][3] = fields[2]; //Date
             } else {
                 System.err.println("Invalid transaction format: " + entries[i]);
             }

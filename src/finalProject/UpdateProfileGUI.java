@@ -34,7 +34,7 @@ public class UpdateProfileGUI extends JFrame {
 		JButton btnChangeUsername = new JButton("Change Username");
 		btnChangeUsername.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//set Customer's db to newUsername.txt
+				//set Customer's db to id.txt
 				//update Customer's username in users.txt
 				AuthManager.updateUsername(customer, txtChangeTo.getText());
 				customer.setUsername(txtChangeTo.getText());

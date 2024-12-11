@@ -28,7 +28,6 @@ public class AuthManager {
 	            }
 	        }
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
@@ -50,7 +49,6 @@ public class AuthManager {
 	        }
 			scanner.close();
 	        String id = UUID.randomUUID().toString();
-            //needs to write to end, not overwrite
 	        FileWriter writer;
 			try {
 				writer = new FileWriter(usersFile, true);
@@ -58,12 +56,10 @@ public class AuthManager {
 		        pw.println(username + "," + password + "," + id + "," + type);
 		        pw.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         
@@ -129,7 +125,6 @@ public class AuthManager {
 	        }
             scanner.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return null;
