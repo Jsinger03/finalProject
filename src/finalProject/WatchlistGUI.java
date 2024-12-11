@@ -8,6 +8,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 public class WatchlistGUI extends JFrame {
 
@@ -40,17 +41,16 @@ public class WatchlistGUI extends JFrame {
 		btnClose.setBounds(156, 21, 117, 29);
 		contentPane.add(btnClose);
 		String[] stocks = customer.getWatchlist().split(";");
-		// String[] displayableStocks = new String[stocks.size()];
-		// for (int i = 0; i < stocks.size(); i++) {
-		// 	displayableStocks[i] = stocks.get(i).toString();
-		// }
-		JList listWatchlist = new JList(stocks);
-		listWatchlist.setBounds(33, 62, 368, 178);
-		contentPane.add(listWatchlist);
+        JList listWatchlist = new JList(stocks);
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(33, 62, 368, 178);
+        scrollPane.setViewportView(listWatchlist);
+        contentPane.add(scrollPane);
 		
 		JLabel lblTitle = new JLabel("Watchlist");
 		lblTitle.setBounds(33, 26, 87, 16);
 		contentPane.add(lblTitle);
+		
 	}
-
 }

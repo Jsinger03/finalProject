@@ -1,3 +1,8 @@
 MSFT,Microsoft Corporation,216.54
 AAPL,Apple Inc.,25.0
 GOOGL,Alphabet Inc.,3000.0
+Alba,ALB,15.0
+Nintendo,NIN,151.0
+New York University,NYU,2024.0
+Lenovo,LEN,22.0
+Razer,RZR,33.0

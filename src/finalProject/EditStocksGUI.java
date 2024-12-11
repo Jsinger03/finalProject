@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class EditStocksGUI extends JFrame {
 
@@ -36,13 +37,15 @@ public class EditStocksGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		ArrayList<Stock> stocks = stocksmanager.getStocks();
-		String[] displayableStocks = new String[stocks.size()];
-		for (int i = 0; i < stocks.size(); i++) {
-			displayableStocks[i] = stocks.get(i).toString();
-		}
-		JList listStocks = new JList(displayableStocks);
-		listStocks.setBounds(24, 16, 399, 137);
-		contentPane.add(listStocks);
+        String[] displayableStocks = new String[stocks.size()];
+        for (int i = 0; i < stocks.size(); i++) {
+            displayableStocks[i] = stocks.get(i).toString();
+        }
+        JList listStocks = new JList(displayableStocks);
+
+        JScrollPane scrollPane = new JScrollPane(listStocks);
+        scrollPane.setBounds(24, 16, 399, 137);
+        contentPane.add(scrollPane);
 		
 		txtStockName = new JTextField();
 		txtStockName.setBounds(28, 193, 130, 26);

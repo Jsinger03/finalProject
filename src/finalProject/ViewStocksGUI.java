@@ -10,6 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
 
 public class ViewStocksGUI extends JFrame {
 
@@ -60,9 +61,12 @@ public class ViewStocksGUI extends JFrame {
 		for (int i = 0; i < stocks.size(); i++) {
 			displayableStocks[i] = stocks.get(i).toString();
 		}
-		JList listStocks = new JList(displayableStocks);
-		listStocks.setBounds(26, 75, 399, 137);
-		contentPane.add(listStocks);
+		JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(26, 75, 399, 137);
+        contentPane.add(scrollPane);
+
+        JList listStocks = new JList(displayableStocks);
+        scrollPane.setViewportView(listStocks);
 		
 		txtQuantity = new JTextField();
 		txtQuantity.setBounds(94, 225, 130, 26);

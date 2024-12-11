@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
@@ -32,9 +33,12 @@ public class PortfolioGUI extends JFrame {
 		contentPane.setLayout(null);
 		
 		String[] portfolio = customer.getPortfolio().toString().split(";");
-		JList listPortfolio = new JList(portfolio);
-		listPortfolio.setBounds(36, 6, 371, 126);
-		contentPane.add(listPortfolio);
+        JList listPortfolio = new JList(portfolio);
+
+        JScrollPane scrollPane = new JScrollPane();
+        scrollPane.setBounds(36, 6, 371, 126);
+        scrollPane.setViewportView(listPortfolio);
+        contentPane.add(scrollPane);
 		//need to pull the Portfolio from Customer, and for each stock in it search the database for that stock and get its current price
 		//if stock is not present, remove it from portfolio
 		
