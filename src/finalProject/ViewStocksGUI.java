@@ -83,13 +83,28 @@ public class ViewStocksGUI extends JFrame {
 				//Search stocks db and see if a stock matches the name or symbol given in those fields
 				//if so, load that data into the JList
 				//if not, do not modify the list
-				ArrayList<Stock> searchResults = stocksManager.searchStocks(txtName.getText());
-				String[] displayableStocks = new String[searchResults.size()];
-				for (int i = 0; i < searchResults.size(); i++) {
-					displayableStocks[i] = searchResults.get(i).toString();
-				}
-				listStocks.setListData(displayableStocks);
-			}
+				//this needs to take name, and if name is blank take symbol
+				String name = txtName.getText().trim();
+                String symbol = txtSymbol.getText().trim();
+                ArrayList<Stock> searchResults;
+
+                if (!name.isEmpty()) {
+                    // Search by name
+                    searchResults = stocksManager.searchStocks(name);
+                } else if (!symbol.isEmpty()) {
+                    // Search by symbol
+                    searchResults = stocksManager.searchStocks(symbol);
+                } else {
+                    // If both are blank, search as currently implemented
+                    searchResults = stocksManager.getStocks();
+                }
+
+                String[] displayableStocks = new String[searchResults.size()];
+                for (int i = 0; i < searchResults.size(); i++) {
+                    displayableStocks[i] = searchResults.get(i).toString();
+                }
+                listStocks.setListData(displayableStocks);
+            }
 		});
 		btnSearch.setBounds(293, 14, 117, 29);
 		contentPane.add(btnSearch);
