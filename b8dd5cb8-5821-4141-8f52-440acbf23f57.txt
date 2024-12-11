@@ -1,4 +1,4 @@
 1.939573564E7
 Ferrari,FER,100.21:100;MSFT,Microsoft Corporation,216.54:100;GOOGL,Alphabet Inc.,2823.36:1;AAPL,Apple Inc.,50.0:100
 GOOGL,Alphabet Inc.,2823.36`1`2024-12-11T10:19:47.630193`buy;Ferrari,FER,100.21`100`2024-12-11T10:22:13.048010`buy;AAPL,Apple Inc.,50.0`100`2024-12-11T10:22:23.485004`buy;MSFT,Microsoft Corporation,216.54`100`2024-12-11T10:22:33.232101`buy;
-
+MSFT,Microsoft Corporation,216.54;AAPL,Apple Inc.,25.0;GOOGL,Alphabet Inc.,3000.0;GOOGL,Alphabet Inc.,3000.0;AAPL,Apple Inc.,25.0;

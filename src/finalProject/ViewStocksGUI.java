@@ -111,8 +111,8 @@ public class ViewStocksGUI extends JFrame {
 				//take the stock selected from the list and add it to the customer's watchlist attribute
 				customer.addToWatchlist(listStocks.getSelectedValue().toString());
 				dispose();
-				CustomerGUI customerGUI = new CustomerGUI(customer);
-				customerGUI.setVisible(true);
+				WatchlistGUI watchlistGUI = new WatchlistGUI(customer);
+				watchlistGUI.setVisible(true);
 			}
 		});
 		btnAddToWatchlist.setBounds(271, 42, 173, 29);
