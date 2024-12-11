@@ -42,7 +42,7 @@ public class TransactionsGUI extends JFrame {
 		btnClose.setBounds(161, 225, 117, 29);
 		contentPane.add(btnClose);
 		
-		String[] colNames = {"Buy/Sell", "Stock", "Quanity", "Price"};
+		String[] colNames = {"Buy/Sell", "Stock", "Quanity", "Date"};
 		String[][] data = customer.getTransactions();
 		DefaultTableModel model = new DefaultTableModel(data, colNames);
         tblTransactions = new JTable(model);

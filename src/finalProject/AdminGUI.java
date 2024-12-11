@@ -16,7 +16,6 @@ public class AdminGUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField txtUsername;
-
 	/**
 	 * Create the frame.
 	 */
@@ -33,6 +32,9 @@ public class AdminGUI extends JFrame {
 		btnEditStocks.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//render EditStocksGUI
+				EditStocksGUI EditStocksGUI = new EditStocksGUI();
+				EditStocksGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnEditStocks.setBounds(171, 46, 117, 29);
@@ -41,7 +43,10 @@ public class AdminGUI extends JFrame {
 		JButton btnGenerateUserTransactionReport = new JButton("Generate Transaction Report");
 		btnGenerateUserTransactionReport.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//take the username from the text field and use it to load data and then render TransactionsGUI
+				String transactions = AuthManager.getUserTransactions(txtUsername.getText());
+				AdminViewTransactionsGUI adminViewTransactionsGUI = new AdminViewTransactionsGUI(transactions);
+				adminViewTransactionsGUI.setVisible(true);
+				dispose();
 			}
 		});
 		btnGenerateUserTransactionReport.setBounds(76, 207, 304, 29);

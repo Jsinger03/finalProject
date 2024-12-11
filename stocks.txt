@@ -1,4 +1,4 @@
-AAPL,Apple Inc., 150.75
-MSFT,Microsoft Corporation, 216.54
-GOOGL,Alphabet Inc., 2823.36
-AMZN,Amazon.com Inc., 3350.77
+MSFT,Microsoft Corporation,216.54
+GOOGL,Alphabet Inc.,2823.36
+Ferrari,FER,100.21
+AAPL,Apple Inc.,50.0

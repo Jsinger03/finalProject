@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.UUID;
+
 public class AuthManager {
     private static final String USERS_FILE = "users.txt";
 
@@ -114,5 +115,44 @@ public class AuthManager {
             e.printStackTrace();
         }
     }
+    private static String getUserId(String username) {
+        File usersFile = new File(USERS_FILE);
+        Scanner scanner;
+		try {
+			scanner = new Scanner(usersFile);
+			while (scanner.hasNextLine()) {
+	            String line = scanner.nextLine();
+	            String[] parts = line.split(",");
+	            if (parts[0].equals(username)) {
+	                return parts[2];
+	            }
+	        }
+            scanner.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return null;
+    }
+    public static String getUserTransactions(String username) {
+        String userID = getUserId(username);
+        System.out.println(userID);
+        if (userID == null) {
+            System.err.println("User ID not found for username: " + username);
+            return null;
+        }
+        try {
+            File userFile = new File(userID + ".txt");
+            Scanner scanner = new Scanner(userFile);
+            scanner.nextDouble();
+            scanner.nextLine();
+            scanner.nextLine();
+            return scanner.nextLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
 

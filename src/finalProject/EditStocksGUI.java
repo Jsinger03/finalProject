@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class EditStocksGUI extends JFrame {
@@ -19,22 +20,8 @@ public class EditStocksGUI extends JFrame {
 	private JTextField txtStockName;
 	private JTextField txtStockSymbol;
 	private JTextField txtStockPrice;
+	private StocksManager stocksmanager = new StocksManager();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					EditStocksGUI frame = new EditStocksGUI();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
@@ -48,8 +35,13 @@ public class EditStocksGUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JList listStocks = new JList();
-		listStocks.setBounds(56, 31, 311, 122);
+		ArrayList<Stock> stocks = stocksmanager.getStocks();
+		String[] displayableStocks = new String[stocks.size()];
+		for (int i = 0; i < stocks.size(); i++) {
+			displayableStocks[i] = stocks.get(i).toString();
+		}
+		JList listStocks = new JList(displayableStocks);
+		listStocks.setBounds(24, 16, 399, 137);
 		contentPane.add(listStocks);
 		
 		txtStockName = new JTextField();
@@ -84,6 +76,13 @@ public class EditStocksGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//take the info from the text fields and use it to add a Stock to the db
 				//reload the data for the JList
+				stocksmanager.addStock(new Stock(txtStockName.getText(), txtStockSymbol.getText(), Double.parseDouble(txtStockPrice.getText())));
+				ArrayList<Stock> stocks = stocksmanager.getStocks();
+				String[] displayableStocks = new String[stocks.size()];
+				for (int i = 0; i < stocks.size(); i++) {
+					displayableStocks[i] = stocks.get(i).toString();
+				}
+				listStocks.setListData(displayableStocks);
 			}
 		});
 		btnAddStock.setBounds(180, 231, 117, 29);
@@ -94,6 +93,13 @@ public class EditStocksGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//remove the selected stock in the JList from the db
 				//reload the data for the JList
+				stocksmanager.deleteStock(Stock.fromString(listStocks.getSelectedValue().toString()));
+				ArrayList<Stock> stocks = stocksmanager.getStocks();
+				String[] displayableStocks = new String[stocks.size()];
+				for (int i = 0; i < stocks.size(); i++) {
+					displayableStocks[i] = stocks.get(i).toString();
+				}
+				listStocks.setListData(displayableStocks);
 			}
 		});
 		btnDeleteStock.setBounds(30, 226, 117, 29);
@@ -104,6 +110,13 @@ public class EditStocksGUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				//take the selected stock from the JList and change the price associated with it in the db
 				//reload the JList data
+				stocksmanager.changePrice(Stock.fromString(listStocks.getSelectedValue().toString()), Double.parseDouble(txtStockPrice.getText()));
+				ArrayList<Stock> stocks = stocksmanager.getStocks();
+				String[] displayableStocks = new String[stocks.size()];
+				for (int i = 0; i < stocks.size(); i++) {
+					displayableStocks[i] = stocks.get(i).toString();
+				}
+				listStocks.setListData(displayableStocks);
 			}
 		});
 		btnChangePrice.setBounds(324, 231, 117, 29);

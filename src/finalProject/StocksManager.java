@@ -2,6 +2,7 @@ package finalProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,5 +39,37 @@ public class StocksManager {
             }
         }
         return results;
+    }
+    public void addStock(Stock stock) {
+        stocks.add(stock);
+        saveStocks();
+    }
+    public void deleteStock(Stock stock) {
+        stocks.remove(stock);
+        saveStocks();
+    }
+    public void changePrice(Stock stock, double newPrice) {
+        stocks.remove(stock);
+        stock.setPrice(newPrice);
+        stocks.add(stock);
+        saveStocks();
+    }
+    public void saveStocks() {
+        File file = new File(filename);
+        try (PrintWriter writer = new PrintWriter(file)) {
+            for (Stock stock : stocks) {
+                writer.println(stock.getSymbol() + "," + stock.getName() + "," + stock.getPrice());
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public Stock getStock(String symbol) {
+        for (Stock stock : stocks) {
+            if (stock.getSymbol().equals(symbol)) {
+                return stock;
+            }
+        }
+        return null; // Return null if the stock is not found
     }
 }

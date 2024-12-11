@@ -1,4 +1,0 @@
-1817.69
-MSFT,Microsoft Corporation,216.54:14;AAPL,Apple Inc.,150.75:1
-MSFT,Microsoft Corporation,216.54`2`2024-12-11T00:11:10.013453`buy;MSFT,Microsoft Corporation,216.54`12`2024-12-11T00:18:46.443125`buy;AAPL,Apple Inc.,150.75`2`2024-12-11T00:19:09.890360`buy;AAPL,Apple Inc.,150.75`1`2024-12-11T00:19:17.141736`sell;
-
