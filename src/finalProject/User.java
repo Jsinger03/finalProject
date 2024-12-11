@@ -1,21 +1,23 @@
 package finalProject;
 
+import java.util.UUID;
 public abstract class User {
     protected String id;
     protected String username;
     protected String password;
-    protected String name;
+    protected int type;
     
-    public User(String id, String username, String password, String name) {
-        this.id = id;
+    public User(String username, String password) {
+        this.id = UUID.randomUUID().toString();
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.type=-1;
     }
     
     public String getId() { return id; }
     public String getUsername() { return username; }
     public String getPassword() { return password; }
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setUsername(String username) { this.username = username; }
+    public void setPassword(String pwd) { this.password = pwd; }
+
 }

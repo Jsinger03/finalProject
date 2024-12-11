@@ -10,6 +10,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JToggleButton;
+import javax.swing.JRadioButton;
 
 public class RegisterGUI extends JFrame {
 
@@ -45,7 +47,7 @@ public class RegisterGUI extends JFrame {
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
 		
-		JLabel lblPassword = new JLabel("New label");
+		JLabel lblPassword = new JLabel("Password");
 		lblPassword.setBounds(87, 111, 61, 16);
 		contentPane.add(lblPassword);
 		
@@ -57,7 +59,11 @@ public class RegisterGUI extends JFrame {
 				//if username does not exist, add username password pair to the users db
 			}
 		});
-		btnRegister.setBounds(160, 168, 117, 29);
+		btnRegister.setBounds(157, 212, 117, 29);
 		contentPane.add(btnRegister);
+		
+		JRadioButton rdbtnIsAdmin = new JRadioButton("Admin");
+		rdbtnIsAdmin.setBounds(87, 159, 141, 23);
+		contentPane.add(rdbtnIsAdmin);
 	}
 }
