@@ -2,8 +2,8 @@ package finalProject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class StocksManager {
@@ -29,5 +29,14 @@ public class StocksManager {
 
     public ArrayList<Stock> getStocks() {
         return stocks;
+    }
+    public ArrayList<Stock> searchStocks(String searchTerm) {
+        ArrayList<Stock> results = new ArrayList<>();
+        for (Stock stock : stocks) {
+            if (stock.getName().contains(searchTerm) || stock.getSymbol().contains(searchTerm)) {
+                results.add(stock);
+            }
+        }
+        return results;
     }
 }

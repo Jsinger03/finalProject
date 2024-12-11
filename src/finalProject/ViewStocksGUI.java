@@ -1,17 +1,15 @@
 package finalProject;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.JList;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 public class ViewStocksGUI extends JFrame {
 
@@ -54,27 +52,9 @@ public class ViewStocksGUI extends JFrame {
 		contentPane.add(txtSymbol);
 		txtSymbol.setColumns(10);
 		
-		JButton btnSearch = new JButton("Search");
-		btnSearch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//Search stocks db and see if a stock matches the name or symbol given in those fields
-				//if so, load that data into the JList
-				//if not, do not modify the list
-			}
-		});
-		btnSearch.setBounds(293, 14, 117, 29);
-		contentPane.add(btnSearch);
 		
-		JButton btnBuyStock = new JButton("Buy Stock");
-		btnBuyStock.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//take selected stock from list, and quantity from text field
-				//have customer buy the stock, using its own function to check if it has enough balance
-				//return to the CustomerGUI
-			}
-		});
-		btnBuyStock.setBounds(308, 225, 117, 29);
-		contentPane.add(btnBuyStock);
+		
+		
 		ArrayList<Stock> stocks = stocksManager.getStocks();
 		String[] displayableStocks = new String[stocks.size()];
 		for (int i = 0; i < stocks.size(); i++) {
@@ -84,15 +64,6 @@ public class ViewStocksGUI extends JFrame {
 		listStocks.setBounds(26, 75, 399, 137);
 		contentPane.add(listStocks);
 		
-		JButton btnAddToWatchlist = new JButton("Add to Watchlist");
-		btnAddToWatchlist.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				//take the stock selected from the list and add it to the customer's watchlist attribute
-			}
-		});
-		btnAddToWatchlist.setBounds(271, 42, 173, 29);
-		contentPane.add(btnAddToWatchlist);
-		
 		txtQuantity = new JTextField();
 		txtQuantity.setBounds(144, 225, 130, 26);
 		contentPane.add(txtQuantity);
@@ -101,6 +72,47 @@ public class ViewStocksGUI extends JFrame {
 		JLabel lblQuantity = new JLabel("Quantity");
 		lblQuantity.setBounds(36, 230, 61, 16);
 		contentPane.add(lblQuantity);
+
+		JButton btnSearch = new JButton("Search");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//Search stocks db and see if a stock matches the name or symbol given in those fields
+				//if so, load that data into the JList
+				//if not, do not modify the list
+				ArrayList<Stock> searchResults = stocksManager.searchStocks(txtName.getText());
+				String[] displayableStocks = new String[searchResults.size()];
+				for (int i = 0; i < searchResults.size(); i++) {
+					displayableStocks[i] = searchResults.get(i).toString();
+				}
+				listStocks.setListData(displayableStocks);
+			}
+		});
+		btnSearch.setBounds(293, 14, 117, 29);
+		contentPane.add(btnSearch);
+
+		JButton btnBuyStock = new JButton("Buy Stock");
+		btnBuyStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take selected stock from list, and quantity from text field
+				//have customer buy the stock, using its own function to check if it has enough balance
+				//return to the CustomerGUI
+				customer.buyStock(Stock.fromString(listStocks.getSelectedValue().toString()), Integer.parseInt(txtQuantity.getText()));
+				dispose();
+				CustomerGUI customerGUI = new CustomerGUI(customer);
+				customerGUI.setVisible(true);
+			}
+		});
+		btnBuyStock.setBounds(308, 225, 117, 29);
+		contentPane.add(btnBuyStock);
+
+		JButton btnAddToWatchlist = new JButton("Add to Watchlist");
+		btnAddToWatchlist.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//take the stock selected from the list and add it to the customer's watchlist attribute
+			}
+		});
+		btnAddToWatchlist.setBounds(271, 42, 173, 29);
+		contentPane.add(btnAddToWatchlist);
 	}
 
 }

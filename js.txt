@@ -1,4 +1,4 @@
-6000.0
-
-[]
+3560.55
+AAPL,Apple Inc.,150.75:10;AAPL,Apple Inc.,150.75:10;MSFT,Microsoft Corporation,216.54:5
+[AAPL,Apple Inc.,150.75:4:2024-12-10T23:09:35.915763:sell;, AAPL,Apple Inc.,150.75:5:2024-12-10T23:09:45.862245:sell;, AAPL,Apple Inc.,150.75:2:2024-12-10T23:09:49.955994:sell;]
 

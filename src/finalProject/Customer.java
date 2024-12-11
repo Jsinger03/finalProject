@@ -8,7 +8,7 @@ import java.util.Scanner;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.time.LocalDateTime;
 public class Customer extends User {
 	Portfolio portfolio;
 	ArrayList<Transaction> transactions;
@@ -92,6 +92,26 @@ public class Customer extends User {
     }
     public Portfolio getPortfolio() {
         return this.portfolio;
+    }
+    public void buyStock(Stock stock, int quantity) {
+        if (this.balance >= stock.getPrice() * quantity) {
+            this.balance -= stock.getPrice() * quantity;
+            this.portfolio.addStock(stock, quantity);
+            this.transactions.add(new Transaction(stock, quantity, LocalDateTime.now(), "buy"));
+            save();
+        } else {
+            System.out.println("Insufficient balance to buy stock");
+        }
+    }
+    public void sellStock(Stock stock, int held, int quantity) {
+        if (held >= quantity) {
+            this.balance += stock.getPrice() * quantity;
+            this.portfolio.removeStock(stock, quantity);
+            this.transactions.add(new Transaction(stock, quantity, LocalDateTime.now(), "sell"));
+            save();
+        } else {
+            System.out.println("Insufficient quantity to sell stock");
+        }
     }
 
 }
