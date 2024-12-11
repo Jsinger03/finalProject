@@ -24,4 +24,32 @@ public class Portfolio {
             }
         }
     }
+    public String toString() {
+        StringBuilder out = new StringBuilder();
+        for (Map.Entry<Stock, Integer> entry : holdings.entrySet()) {
+            out.append(entry.getKey().toString())
+               .append(":")
+               .append(entry.getValue())
+               .append(";");
+        }
+        // Remove the last semicolon
+        if (out.length() > 0) {
+            out.setLength(out.length() - 1);
+        }
+        return out.toString();
+    }
+    
+    public static Portfolio fromString(String str) {
+        Portfolio portfolio = new Portfolio();
+        String[] entries = str.split(";");
+        for (String entry : entries) {
+            String[] parts = entry.split(":");
+            if (parts.length == 2) {
+                Stock stock = Stock.fromString(parts[0]); // Assuming Stock has a fromString method
+                int quantity = Integer.parseInt(parts[1]);
+                portfolio.addStock(stock, quantity);
+            }
+        }
+        return portfolio;
+    }
 }
