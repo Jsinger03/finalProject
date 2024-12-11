@@ -1,0 +1,4 @@
+1679.0
+Nintendo,NIN,151.0:22
+Nintendo,NIN,151.0`22`2024-12-11T16:05:31.889714`buy;
+Razer,RZR,40.0;
