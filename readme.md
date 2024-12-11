@@ -2,38 +2,30 @@
 
 This is the repository for OOP Final Project
 
-comment on your code so anyone can understand its purpose, pick up and help
-Todo:
-1. Finalize usecase diagram
-2. create sequence diagrams
-3. create class diagrams
-    * determine classes based on sequence diagrams
-    * minimum
-        * user
-            * Customer
-            * admin
-        * dbManager
-        * loginManager (maybe can combine with dbManager?)
-        * Portfolio (aggregates stocks)
-        * Stock
-4. complete code structure
-5. implement basic functionalities
-    * register / login
-    * Admin
-        * add stocks
-        * remove stocks
-    * Customer
-        * view portfolio
-        * buy stock
-        * sell stock
-    * register, login, and main GUIs
-6. additional functionality
-    * change login info
-    * search for stocks
-    * Admin
-        * change stock prices
-        * generate report
-    * customer
-        * create watchlist
-        * edit watchlist
-        * view transaction history
+Julian Singer, Rafed Abbassi, Rohit Subramaniam
+
+# Instructions for common issues we found when exporting the project
+* if seeing an error of unable to find main function, make a new project and copy paste in all the files
+* users.txt and stocks.txt need to be in the root directory, if when importing the zip file it doesnt seem to be able to find them then drag them manually into the root directory
+* we have run the code successfully, and fully without errors. The only ones we encounter have come from exporting to a different machine and needing to set it up properly
+
+# usage
+* register your account
+    * click the admin radio button to make an admin account
+* login using your username and password
+* if you are a Customer
+    * you may click any of the buttons, but to get started we recommend viewing stocks
+    * when viewing stocks, click on a stock and fill in a desired quantity in the quantity text field, then hit buy and you will purchase the stocks if the total value doesnt exceed your balance
+    * you may then view your transactions to see a list of all your past purchases and sales
+    * head in to view portfolio to see the stocks you currently own, your current balance, and your profit/loss (balance + total value of stocks - initial balance of 5000)
+        * the protfoilio will reflect the current state of stocks,. with prices taken from the databasse and removed stocks being taken out of your portfolio
+    * you may deposit or withdraw funds to change your balance, use it for testing purposes
+    * in view stocks, you may add stocks to your watchlist by selecting them and hitting add to watchlist
+        * this will take you to your watchlist, where you will see stocks you marked and the price they were at at that time
+* if you are an admin
+    * when you log in, you may generate a user report by filling in the name of that user and hitting generate report
+        * this will take you to a GUI where you will see all of that user's transactions since the date they made their first one
+    * you may edit stocks by clicking edit stocks
+        * on this GUI, if you fill in the fields at the bottom, you may add a stock to the database
+        * if you fill in the price and select a stock, or type in that stocks symbol, you may update the price of that stock
+        * if you select a stock, you may then hit the delete stock button to remove that stock from the database
