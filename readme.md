@@ -8,6 +8,7 @@ Julian Singer, Rafed Abbassi, Rohit Subramaniam
 * if seeing an error of unable to find main function, make a new project in eclipse and copy-paste in all the files.
 * users.txt and stocks.txt need to be in the root directory, if when importing the zip file it doesnt seem to be able to find them, then drag them manually into the root directory. This issue occurs if the project is extracted from the zip file and the project root directory is no longer finalProject
 * we have run the code successfully and fully without errors. The only ones we encounter have come from exporting to a different machine and needing to set it up properly
+* [This is how the structure should look](structureExample.png)
 
 # Usage
 * register your account
