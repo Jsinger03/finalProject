@@ -5,11 +5,11 @@ This is the repository for OOP Final Project
 Julian Singer, Rafed Abbassi, Rohit Subramaniam
 
 # Instructions for common issues we found when exporting the project
-* if seeing an error of unable to find main function, make a new project and copy paste in all the files
-* users.txt and stocks.txt need to be in the root directory, if when importing the zip file it doesnt seem to be able to find them then drag them manually into the root directory
-* we have run the code successfully, and fully without errors. The only ones we encounter have come from exporting to a different machine and needing to set it up properly
+* if seeing an error of unable to find main function, make a new project in eclipse and copy-paste in all the files.
+* users.txt and stocks.txt need to be in the root directory, if when importing the zip file it doesnt seem to be able to find them, then drag them manually into the root directory. This issue occurs if the project is extracted from the zip file and the project root directory is no longer finalProject
+* we have run the code successfully and fully without errors. The only ones we encounter have come from exporting to a different machine and needing to set it up properly
 
-# usage
+# Usage
 * register your account
     * click the admin radio button to make an admin account
 * login using your username and password
